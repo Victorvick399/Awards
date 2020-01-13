@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid" style="font-family: 'Nunito', sans-serif;">
+  .
+  <div class="row" >
+    {% for i in posts %}
+    <div class="col-md-4">
+      <div class="card" style="width: 24rem; margin:10px 0px 10px 15px;">
+        <img class="card-img-top" src="{{i.photo.cdn_url}}" alt="{{i.title}}">
+        <div class="card-body">
+          {% if user == i.posted_by %}
+          <a href="{% url 'Profile' %}" class="heading" style="font-size: 35px;">{{i.posted_by}}</a>
+          {% else %}
+          <a href="{% url 'other_profiles' i.posted_by.username %}" class="heading"
+            style="font-size: 35px;">{{i.posted_by}}</a>
+          {% endif %}
+          <p class="card-text">{{i.description}}</p>
+          <p class="card-text">View site <a href="{{i.link}}">here</a>.</p>
+          {% if user == i.posted_by %}
+          <a href="{% url 'update_post' i.id %}" class="btn btn-outline-primary">Update post</a>
+          {% else %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
