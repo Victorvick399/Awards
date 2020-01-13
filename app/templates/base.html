@@ -1,0 +1,39 @@
+{% load bootstrap4 %}
+{% load static %}
+{% load fontawesome_5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% fontawesome_5_static %} 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% if title %}
+  <title>Aawards - {{title}}</title>
+  {% else %}
+  <title> Aawards </title>
+  {% endif %}
+
+  {% block styles %}
+    {% bootstrap_css %}
+    <link href="https://fonts.googleapis.com/css?family=Cookie|Nunito|Open+Sans+Condensed:300|PT+Sans|Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% endblock %}
+</head>
+<body>
+  {% include 'navbar.html' %}
+  {% block content %}
+
+  {% endblock %}
+
+  {% block scripts %}
+    <script>
+      UPLOADCARE_PUBLIC_KEY = 'bba13fc31c6bc1dfa3dd';
+    </script>
+
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+  {% endblock %}
+</body>
+</html>
