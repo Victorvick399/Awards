@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Work Sans', sans-serif;">
+  <a class="navbar-brand" href="{% url 'Home' %}">Aawards</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'Profile' %}">{{user.username}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'new_post' %}">Post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'About' %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="#">I don't know who you are?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/login">Log In</a>
+      </li>
+      {% endif %}
+    </ul>
+    <form id="searchform" class="form-inline" role='search' action="{% url 'search' %}">
+      <input type="text" class="form-control" placeholder="Search for Projects" name="search_term">
+      <button type="submit" class="btn btn-outline-primary my-2 my-sm-0"><i
+          class="fab fa-searchengin"></i></button>
+    </form>
+  </div>
+</nav>
